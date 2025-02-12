@@ -4,6 +4,7 @@ from typing import OrderedDict
 from pydantic import BaseModel
 
 
+
 class Genre(str, Enum):
     """Book genres."""
 
@@ -84,3 +85,4 @@ class InMemoryDB:
         """
         if book_id in self.books:
             del self.books[book_id]
+
