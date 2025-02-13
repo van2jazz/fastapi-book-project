@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /fastapi-book-project
 
 # Install Nginx
 RUN apt-get update && apt-get install -y nginx
