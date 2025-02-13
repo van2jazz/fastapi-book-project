@@ -1,26 +1,8 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+FROM python:3.13.1
 
-# Set the working directory
-WORKDIR /fastapi-book-project
+WORKDIR /app
+COPY . /app
 
-# Install Nginx
-RUN apt-get update && apt-get install -y nginx
+RUN pip3 install -r requirements.txt --no-cache-dir
 
-# Copy the Nginx configuration file
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Copy the application code
-COPY . .
-
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Make the start script executable
-RUN chmod +x start.sh
-
-# Expose the port
-EXPOSE $PORT
-
-# Start the application
-CMD ["start.sh"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
